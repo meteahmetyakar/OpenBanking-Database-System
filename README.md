@@ -26,8 +26,7 @@ Open Banking enables secure, standardized access to bank data via APIs. This des
 ## 🌐 Data Model & Schema
 
 ### Entities & Relationships
-
-![ER Diagram](docs/er_diagram.png)
+<img src="https://github.com/meteahmetyakar/OpenBanking-Database-System/blob/main/images/ER-diagram.png"/>
 
 - **Customer (1)–(N) Account**  
 - **Bank (1)–(N) Account**  
@@ -74,31 +73,31 @@ CREATE TABLE account_beneficiaries (
 
 ## ⚙️ Triggers & Business Logic
 
-1. **`trg_check_account_status`**  
+- **`trg_check_account_status`**  
    - **When**: BEFORE INSERT on `transactions`  
    - **Purpose**: Reject if target account `status <> 'active'`.
 
-2. **`trg_check_balance`**  
+- **`trg_check_balance`**  
    - **When**: BEFORE INSERT on `transactions`  
    - **Purpose**: For withdrawals/transfers, rollback if `amount > balance`.
 
-3. **`trg_update_balance`**  
+- **`trg_update_balance`**  
    - **When**: AFTER INSERT/UPDATE/DELETE on `transactions`  
    - **Purpose**: Increment/decrement `accounts.balance` exactly once per row.
 
-4. **`trg_prevent_overdraft`**  
+- **`trg_prevent_overdraft`**  
    - **When**: AFTER UPDATE on `accounts` (FOLLOWS `trg_update_balance`)  
    - **Purpose**: Raise exception if new balance `< 0`.
 
-5. **`trg_audit_transactions`**  
+- **`trg_audit_transactions`**  
    - **When**: AFTER INSERT/UPDATE/DELETE on `transactions`  
    - **Purpose**: Insert old/new row data into `transactions_audit`.
 
-6. **`trg_notify_new_transaction`**  
+- **`trg_notify_new_transaction`**  
    - **When**: AFTER INSERT on `transactions`  
    - **Purpose**: Issue `pg_notify('new_tx', json_build_object(...))`.
 
-7. **`trg_cascade_bank_code`**  
+- **`trg_cascade_bank_code`**  
    - **When**: AFTER UPDATE on `banks`  
    - **Purpose**: Propagate `bank_code` changes to denormalized child columns.
 
