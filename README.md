@@ -19,7 +19,7 @@ Open Banking enables secure, standardized access to bank data via APIs. This des
 1. **Account Linking**  
 2. **Account Viewing**  
 3. **Transaction History**  
-4. **Payment Initiation** *(optional)*  
+4. **Transfer Money**  
 
 ---
 
