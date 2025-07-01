@@ -156,15 +156,6 @@ CREATE TABLE account_beneficiaries (
 
 ---
 
-## 🖥️ User Interfaces
-
-- **WinForms / React-Admin** front-end.  
-- **PostgREST** API endpoints.  
-- **Admin dashboards** for bank & consent management.  
-- **Log viewer** for audit inspection.
-
----
-
 ## ✅ Conclusion
 
 Comprehensive PostgreSQL design featuring normalized schema, subtype inheritance, triggers, functions, views, and robust business logic—ensuring security, integrity, and real-time notifications.
